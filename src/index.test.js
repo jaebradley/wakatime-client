@@ -31,4 +31,22 @@ describe('WakaTimeClient Integration Test', () => {
       }));
     });
   });
+  describe('getTeams', () => {
+    it('gets teams', async () => {
+      const client = new WakaTimeClient(process.env.ACCESS_TOKEN);
+      const response = await client.getTeams(process.env.USER_ID);
+      const { data } = response;
+      const { data: teamsData } = data;
+      expect(teamsData).toBeDefined();
+    });
+  });
+  describe('getMyTeams', () => {
+    it('gets my teams', async () => {
+      const client = new WakaTimeClient(process.env.ACCESS_TOKEN);
+      const response = await client.getMyTeams();
+      const { data } = response;
+      const { data: teamsData } = data;
+      expect(teamsData).toBeDefined();
+    });
+  });
 });
