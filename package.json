@@ -1,0 +1,54 @@
+{
+  "version": "0.0.0-development",
+  "main": "build/index.js",
+  "global": false,
+  "scripts": {
+    "codecov": "codecov",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "compile": "babel -d build/ src/ --ignore node_modules,*.test.js",
+    "lint": "eslint --ext .js .",
+    "test": "jest --coverage --passWithNoTests",
+    "prepublishOnly": "npm run compile",
+    "semantic-commit": "commit",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "name": "wakatime-client",
+  "description": "NodeJS Client for the Wakatime API",
+  "author": "jae.b.bradley@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaebradley/wakatime-client"
+  },
+  "bugs": {
+    "url": "https://github.com/jaebradley/wakatime-client/issues"
+  },
+  "homepage": "https://github.com/jaebradley/wakatime-client/#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "@commitlint/cli": "^6.1.3",
+    "@commitlint/config-angular": "^6.1.3",
+    "@commitlint/prompt": "^6.1.3",
+    "@commitlint/prompt-cli": "^6.1.3",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "codecov": "^3.0.0",
+    "dotenv": "^5.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "semantic-release": "^15.1.4",
+    "travis-deploy-once": "^4.4.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
