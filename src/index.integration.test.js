@@ -1,41 +1,20 @@
 import dotenv from 'dotenv';
 
-import { WakaTimeClient } from './';
+import { WakaTimeClient, RANGE } from './';
 
 dotenv.config();
 
 describe('WakaTimeClient Integration Test', () => {
   let client;
   const userId = process.env.USER_ID;
+  const dateRange = {
+    startDate: '2018-03-24',
+    endDate: '2018-03-25',
+  };
+  const range = RANGE.LAST_7_DAYS;
 
   beforeEach(() => {
     client = new WakaTimeClient(process.env.ACCESS_TOKEN);
-  });
-
-  describe('getSummaryParameters', () => {
-    const startDate = 'startDate';
-    const endDate = 'endDate';
-    const dateRange = { startDate, endDate };
-    const projectName = 'projectName';
-    const branchNames = ['jae', 'bae', 'bae'];
-
-    it('gets parameters without optional parameters', () => {
-      expect(WakaTimeClient.getSummaryParameters({ dateRange })).toEqual({
-        start: startDate,
-        end: endDate,
-        project: null,
-        branches: '',
-      });
-    });
-
-    it('gets parameters with optional parameters defined', () => {
-      expect(WakaTimeClient.getSummaryParameters({ dateRange, projectName, branchNames })).toEqual({
-        start: startDate,
-        end: endDate,
-        project: projectName,
-        branches: 'jae,bae,bae',
-      });
-    });
   });
 
   describe('getUser', () => {
@@ -103,6 +82,70 @@ describe('WakaTimeClient Integration Test', () => {
       // const { data } = response;
       // const { data: teamMemberData } = data;
       // expect(teamMemberData).toBeDefined();
+    });
+  });
+
+  describe('getUserSummary', () => {
+    it('gets user summary with default parameters', async () => {
+      const response = await client.getUserSummary({ userId, dateRange });
+      const { data } = response;
+      const { data: userSummaryData } = data;
+      expect(userSummaryData).toBeDefined();
+    });
+
+    it('gets user summary with parameters', async () => {
+      const projectName = 'jae-bradley-cli-creator';
+      const branchNames = ['master'];
+      const response = await client.getUserSummary({
+        userId,
+        dateRange,
+        projectName,
+        branchNames,
+      });
+      const { data } = response;
+      const { data: userSummaryData } = data;
+      expect(userSummaryData).toBeDefined();
+    });
+  });
+
+  describe('getMyUserSummary', () => {
+    it('gets my user summary with default parameters', async () => {
+      const response = await client.getMyUserSummary({ dateRange });
+      const { data } = response;
+      const { data: userSummaryData } = data;
+      expect(userSummaryData).toBeDefined();
+    });
+
+    it('gets my user summary with parameters', async () => {
+      const projectName = 'jae-bradley-cli-creator';
+      const branchNames = ['master'];
+      const response = await client.getMyUserSummary({
+        userId,
+        dateRange,
+        projectName,
+        branchNames,
+      });
+      const { data } = response;
+      const { data: userSummaryData } = data;
+      expect(userSummaryData).toBeDefined();
+    });
+  });
+
+  describe('getUserStats', () => {
+    it('gets user stats with default parameters', async () => {
+      const response = await client.getUserStats({ userId, range });
+      const { data } = response;
+      const { data: userStatsData } = data;
+      expect(userStatsData).toBeDefined();
+    });
+  });
+
+  describe('getMyStats', () => {
+    it('gets my stats with default parameters', async () => {
+      const response = await client.getMyStats({ range });
+      const { data } = response;
+      const { data: myStatsData } = data;
+      expect(myStatsData).toBeDefined();
     });
   });
 });
