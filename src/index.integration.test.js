@@ -7,11 +7,15 @@ dotenv.config();
 describe('WakaTimeClient Integration Test', () => {
   let client;
   const userId = process.env.USER_ID;
+  const date = '2018-03-24';
   const dateRange = {
     startDate: '2018-03-24',
     endDate: '2018-03-25',
   };
   const range = RANGE.LAST_7_DAYS;
+  const projectName = 'jae-bradley-cli-creator';
+  const projectId = 'cc6c6b2-d2a4-4884-b0b5-c64a2c64a020';
+  const branchNames = ['master'];
 
   beforeEach(() => {
     client = new WakaTimeClient(process.env.ACCESS_TOKEN);
@@ -94,8 +98,6 @@ describe('WakaTimeClient Integration Test', () => {
     });
 
     it('gets user summary with parameters', async () => {
-      const projectName = 'jae-bradley-cli-creator';
-      const branchNames = ['master'];
       const response = await client.getUserSummary({
         userId,
         dateRange,
@@ -146,6 +148,126 @@ describe('WakaTimeClient Integration Test', () => {
       const { data } = response;
       const { data: myStatsData } = data;
       expect(myStatsData).toBeDefined();
+    });
+  });
+
+  describe('getProjects', () => {
+    it('gets projects', async () => {
+      const response = await client.getProjects(userId);
+      const { data } = response;
+      const { data: projectData } = data;
+      expect(projectData).toBeDefined();
+    });
+  });
+
+  describe('getMyProjects', () => {
+    it('gets my projects', async () => {
+      const response = await client.getMyProjects();
+      const { data } = response;
+      const { data: myProjecftData } = data;
+      expect(myProjecftData).toBeDefined();
+    });
+  });
+
+  describe('getLeaders', () => {
+    it('gets leaders with default parameters', async () => {
+      const response = await client.getLeaders();
+      const { data } = response;
+      const { data: leaders } = data;
+      expect(leaders).toBeDefined();
+    });
+
+    it('gets JavaScript leaders on page 2', async () => {
+      const response = await client.getLeaders({ language: 'JavaScript', pageNumber: 2 });
+      const { data } = response;
+      const { data: javaScriptLeadersOnPage2 } = data;
+      expect(javaScriptLeadersOnPage2).toBeDefined();
+    });
+  });
+
+  describe('getHeartbeats', () => {
+    it('gets heartbeats for date', async () => {
+      const response = await client.getHeartbeats({ userId, date });
+      const { data } = response;
+      const { data: heartbeats } = data;
+      expect(heartbeats).toBeDefined();
+    });
+  });
+
+  describe('getMyHeartbeats', () => {
+    it('gets my heartbeats for date', async () => {
+      const response = await client.getMyHeartbeats(date);
+      const { data } = response;
+      const { data: myHeartbeats } = data;
+      expect(myHeartbeats).toBeDefined();
+    });
+  });
+
+  describe('getGoals', () => {
+    it('gets goals', async () => {
+      const response = await client.getGoals(userId);
+      const { data } = response;
+      const { data: goals } = data;
+      expect(goals).toBeDefined();
+    });
+  });
+
+  describe('getMyGoals', () => {
+    it('gets my goals', async () => {
+      const response = await client.getMyGoals();
+      const { data } = response;
+      const { data: myGoals } = data;
+      expect(myGoals).toBeDefined();
+    });
+  });
+
+  describe('getDurations', () => {
+    it('gets durations for date', async () => {
+      const response = await client.getDurations({ userId, date });
+      const { data } = response;
+      const { data: durations } = data;
+      expect(durations).toBeDefined();
+    });
+
+    it('gets durations for date, project, and branches', async () => {
+      const response = await client.getDurations({ userId, date, projectName, branchNames });
+      const { data } = response;
+      const { data: durations } = data;
+      expect(durations).toBeDefined();
+    });
+  });
+
+  describe('getMyDurations', () => {
+    it('gets my durations for date', async () => {
+      const response = await client.getMyDurations({ date });
+      const { data } = response;
+      const { data: myDurations } = data;
+      expect(myDurations).toBeDefined();
+    });
+
+    it('gets my durations for date, project, and branches', async () => {
+      const response = await client.getMyDurations({ date, projectName, branchNames });
+      const { data } = response;
+      const { data: myDurations } = data;
+      expect(myDurations).toBeDefined();
+    });
+  });
+
+  describe('getCommits', () => {
+    it('gets commits with default parameters', async () => {
+      const response = await client.getCommits({ userId, projectId });
+      const { data } = response;
+      const { data: commits } = data;
+      expect(commits).toBeDefined();
+    });
+  });
+
+  describe('getMyCommits', () => {
+    it('gets my commits with default parameters', async () => {
+      const response = await client.getMyCommits({ projectId });
+      const { data } = response;
+      const { data: myCommits } = data;
+      expect(myCommits).toBeDefined();
     });
   });
 });
