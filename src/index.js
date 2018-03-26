@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RANGE } from './range';
+import RANGE from './range';
 
 const rangeQueryParameters = Object.freeze({
   [RANGE.LAST_7_DAYS]: 'last_7_days',
@@ -193,4 +193,7 @@ class WakaTimeClient {
   }
 }
 
-export default WakaTimeClient;
+export {
+  WakaTimeClient,
+  RANGE,
+};

@@ -1,52 +1,88 @@
-import dotenv from 'dotenv';
+import { WakaTimeClient } from './';
 
-import WakaTimeClient from './';
+describe('WakaTimeClient Unit Test', () => {
+  const projectName = 'projectName';
+  const branchNames = ['jae', 'bae', 'bae'];
 
-dotenv.config();
+  describe('getSummaryParameters', () => {
+    const startDate = 'startDate';
+    const endDate = 'endDate';
+    const dateRange = { startDate, endDate };
 
-describe('WakaTimeClient Integration Test', () => {
-  describe('getUser', () => {
-    it('gets User', async () => {
-      const client = new WakaTimeClient(process.env.ACCESS_TOKEN);
-      const response = await client.getUser(process.env.USER_ID);
-      const { data } = response;
-      const { data: userData } = data;
-      expect(userData).toBeDefined();
-      expect(userData).toMatchObject(expect.objectContaining({
-        created_at: '2017-02-18T07:50:22Z',
-        id: process.env.USER_ID,
-      }));
+    it('gets only required parameters', () => {
+      expect(WakaTimeClient.getSummaryParameters({ dateRange })).toEqual({
+        start: startDate,
+        end: endDate,
+        project: null,
+        branches: '',
+      });
+    });
+
+    it('gets all parameters', () => {
+      expect(WakaTimeClient.getSummaryParameters({ dateRange, projectName, branchNames })).toEqual({
+        start: startDate,
+        end: endDate,
+        project: projectName,
+        branches: 'jae,bae,bae',
+      });
     });
   });
-  describe('getMyUser', () => {
-    it('gets my User', async () => {
-      const client = new WakaTimeClient(process.env.ACCESS_TOKEN);
-      const response = await client.getMyUser();
-      const { data } = response;
-      const { data: userData } = data;
-      expect(userData).toBeDefined();
-      expect(userData).toMatchObject(expect.objectContaining({
-        created_at: '2017-02-18T07:50:22Z',
-        id: process.env.USER_ID,
-      }));
+
+  describe('getStatsParameters', () => {
+    it('gets only required parameters', () => {
+      expect(WakaTimeClient.getStatsParameters({})).toEqual({
+        timeout: null,
+        writes_only: null,
+        project: null,
+      });
+    });
+
+    it('gets all parameters', () => {
+      expect(WakaTimeClient.getStatsParameters({
+        timeout: 'timeout',
+        useWritesOnly: 'useWritesOnly',
+        projectName: 'projectName',
+      })).toEqual({
+        timeout: 'timeout',
+        writes_only: 'useWritesOnly',
+        project: 'projectName',
+      });
     });
   });
-  describe('getTeams', () => {
-    it('gets teams', async () => {
-      const client = new WakaTimeClient(process.env.ACCESS_TOKEN);
-      const response = await client.getTeams(process.env.USER_ID);
-      const { data } = response;
-      const { data: teamsData } = data;
-      expect(teamsData).toBeDefined();
+
+  describe('getDurationParameters', () => {
+    const date = 'date';
+
+    it('gets only required parameters', () => {
+      expect(WakaTimeClient.getDurationParameters({ date })).toEqual({
+        date,
+        project: null,
+        branches: '',
+      });
+    });
+
+    it('gets all parameters', () => {
+      expect(WakaTimeClient.getDurationParameters({ date, projectName, branchNames })).toEqual({
+        date,
+        project: projectName,
+        branches: 'jae,bae,bae',
+      });
     });
   });
-  describe('getMyTeams', () => {
-    it('gets my teams', async () => {
-      const client = new WakaTimeClient(process.env.ACCESS_TOKEN);
-      const response = await client.getMyTeams();
-      const { data } = response;
-      const { data: teamsData } = data;
-      expect(teamsData).toBeDefined();
+
+  describe('getCommitsParameters', () => {
+    it('gets only required parameters', () => {
+      expect(WakaTimeClient.getCommitsParameters({})).toEqual({ author: null, page: null });
+    });
+
+    it('gets all parameters', () => {
+      const authorUsername = 'authorUsername';
+      const pageNumber = 'pageNumber';
+
+      expect(WakaTimeClient.getCommitsParameters({ authorUsername, pageNumber })).toEqual({
+        author: authorUsername,
+        page: pageNumber,
+      });
     });
   });
 });
