@@ -7,6 +7,7 @@
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "compile": "babel -d build/ src/ --ignore node_modules,*.test.js",
     "lint": "eslint --ext .js .",
+    "is-es5": "es-check es5 ./dist/*.js",
     "test": "jest --coverage --passWithNoTests",
     "prepublishOnly": "npm run compile",
     "semantic-commit": "commit",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.42",
     "@babel/core": "^7.0.0-beta.42",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
     "@commitlint/cli": "^6.1.3",
     "@commitlint/config-angular": "^6.1.3",
@@ -40,6 +42,7 @@
     "babel-jest": "^22.4.3",
     "codecov": "^3.0.0",
     "dotenv": "^5.0.1",
+    "es-check": "^2.0.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0",
