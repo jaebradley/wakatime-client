@@ -9,6 +9,11 @@ npm install wakatime-client --save
 ```
 ## API
 
+* [Create Instance Using API Key](###create-instance-using-api-key)
+* [`getUser`](###getUser)
+* [`getMe`](###getMe)
+* [`getTeams`](###getTeams)
+
 ### Create Instance Using API Key
 
 ```javascript
