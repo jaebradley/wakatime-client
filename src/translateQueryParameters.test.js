@@ -1,16 +1,21 @@
-import { WakaTimeClient } from './';
+import {
+  translateSummaryParameters,
+  translateStatsParameters,
+  translateDurationParameters,
+  translateCommitsParameters,
+} from './translateQueryParameters';
 
-describe('WakaTimeClient Unit Test', () => {
+describe('translateQueryParameters', () => {
   const projectName = 'projectName';
   const branchNames = ['jae', 'bae', 'bae'];
 
-  describe('getSummaryParameters', () => {
+  describe('translateSummaryParameters', () => {
     const startDate = 'startDate';
     const endDate = 'endDate';
     const dateRange = { startDate, endDate };
 
     it('gets only required parameters', () => {
-      expect(WakaTimeClient.getSummaryParameters({ dateRange })).toEqual({
+      expect(translateSummaryParameters({ dateRange })).toEqual({
         start: startDate,
         end: endDate,
         project: null,
@@ -19,7 +24,7 @@ describe('WakaTimeClient Unit Test', () => {
     });
 
     it('gets all parameters', () => {
-      expect(WakaTimeClient.getSummaryParameters({ dateRange, projectName, branchNames })).toEqual({
+      expect(translateSummaryParameters({ dateRange, projectName, branchNames })).toEqual({
         start: startDate,
         end: endDate,
         project: projectName,
@@ -28,9 +33,9 @@ describe('WakaTimeClient Unit Test', () => {
     });
   });
 
-  describe('getStatsParameters', () => {
+  describe('translateStatsParameters', () => {
     it('gets only required parameters', () => {
-      expect(WakaTimeClient.getStatsParameters({})).toEqual({
+      expect(translateStatsParameters()).toEqual({
         timeout: null,
         writes_only: null,
         project: null,
@@ -38,7 +43,7 @@ describe('WakaTimeClient Unit Test', () => {
     });
 
     it('gets all parameters', () => {
-      expect(WakaTimeClient.getStatsParameters({
+      expect(translateStatsParameters({
         timeout: 'timeout',
         useWritesOnly: 'useWritesOnly',
         projectName: 'projectName',
@@ -50,11 +55,11 @@ describe('WakaTimeClient Unit Test', () => {
     });
   });
 
-  describe('getDurationParameters', () => {
+  describe('translateDurationParameters', () => {
     const date = 'date';
 
     it('gets only required parameters', () => {
-      expect(WakaTimeClient.getDurationParameters({ date })).toEqual({
+      expect(translateDurationParameters({ date })).toEqual({
         date,
         project: null,
         branches: '',
@@ -62,7 +67,7 @@ describe('WakaTimeClient Unit Test', () => {
     });
 
     it('gets all parameters', () => {
-      expect(WakaTimeClient.getDurationParameters({ date, projectName, branchNames })).toEqual({
+      expect(translateDurationParameters({ date, projectName, branchNames })).toEqual({
         date,
         project: projectName,
         branches: 'jae,bae,bae',
@@ -70,16 +75,16 @@ describe('WakaTimeClient Unit Test', () => {
     });
   });
 
-  describe('getCommitsParameters', () => {
+  describe('translateCommitsParameters', () => {
     it('gets only required parameters', () => {
-      expect(WakaTimeClient.getCommitsParameters({})).toEqual({ author: null, page: null });
+      expect(translateCommitsParameters()).toEqual({ author: null, page: null });
     });
 
     it('gets all parameters', () => {
       const authorUsername = 'authorUsername';
       const pageNumber = 'pageNumber';
 
-      expect(WakaTimeClient.getCommitsParameters({ authorUsername, pageNumber })).toEqual({
+      expect(translateCommitsParameters({ authorUsername, pageNumber })).toEqual({
         author: authorUsername,
         page: pageNumber,
       });

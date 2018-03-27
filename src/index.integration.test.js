@@ -4,6 +4,8 @@ import { WakaTimeClient, RANGE } from './';
 
 dotenv.config();
 
+jest.setTimeout(10000);
+
 describe('WakaTimeClient Integration Test', () => {
   let client;
   const userId = process.env.USER_ID;
@@ -14,7 +16,6 @@ describe('WakaTimeClient Integration Test', () => {
   };
   const range = RANGE.LAST_7_DAYS;
   const projectName = 'jae-bradley-cli-creator';
-  const projectId = 'cc6c6b2-d2a4-4884-b0b5-c64a2c64a020';
   const branchNames = ['master'];
 
   beforeEach(() => {
@@ -33,9 +34,9 @@ describe('WakaTimeClient Integration Test', () => {
       }));
     });
   });
-  describe('getMyUser', () => {
+  describe('getMe', () => {
     it('gets my user details', async () => {
-      const response = await client.getMyUser();
+      const response = await client.getMe();
       const { data } = response;
       const { data: userData } = data;
       expect(userData).toBeDefined();
@@ -110,19 +111,16 @@ describe('WakaTimeClient Integration Test', () => {
     });
   });
 
-  describe('getMyUserSummary', () => {
-    it('gets my user summary with default parameters', async () => {
-      const response = await client.getMyUserSummary({ dateRange });
+  describe('getMySummary', () => {
+    it('gets my summary with default parameters', async () => {
+      const response = await client.getMySummary({ dateRange });
       const { data } = response;
       const { data: userSummaryData } = data;
       expect(userSummaryData).toBeDefined();
     });
 
-    it('gets my user summary with parameters', async () => {
-      const projectName = 'jae-bradley-cli-creator';
-      const branchNames = ['master'];
-      const response = await client.getMyUserSummary({
-        userId,
+    it('gets my summary with parameters', async () => {
+      const response = await client.getMySummary({
         dateRange,
         projectName,
         branchNames,
@@ -230,7 +228,12 @@ describe('WakaTimeClient Integration Test', () => {
     });
 
     it('gets durations for date, project, and branches', async () => {
-      const response = await client.getDurations({ userId, date, projectName, branchNames });
+      const response = await client.getDurations({
+        userId,
+        date,
+        projectName,
+        branchNames,
+      });
       const { data } = response;
       const { data: durations } = data;
       expect(durations).toBeDefined();
@@ -253,21 +256,21 @@ describe('WakaTimeClient Integration Test', () => {
     });
   });
 
-  describe('getCommits', () => {
-    it('gets commits with default parameters', async () => {
-      const response = await client.getCommits({ userId, projectId });
-      const { data } = response;
-      const { data: commits } = data;
-      expect(commits).toBeDefined();
-    });
-  });
+  // describe('getCommits', () => {
+  //   it('gets commits with default parameters', async () => {
+  //     const response = await client.getCommits({ userId, projectName });
+  //     const { data } = response;
+  //     const { data: commits } = data;
+  //     expect(commits).toBeDefined();
+  //   });
+  // });
 
-  describe('getMyCommits', () => {
-    it('gets my commits with default parameters', async () => {
-      const response = await client.getMyCommits({ projectId });
-      const { data } = response;
-      const { data: myCommits } = data;
-      expect(myCommits).toBeDefined();
-    });
-  });
+  // describe('getMyCommits', () => {
+  //   it('gets my commits with default parameters', async () => {
+  //     const response = await client.getMyCommits({ projectName });
+  //     const { data } = response;
+  //     const { data: myCommits } = data;
+  //     expect(myCommits).toBeDefined();
+  //   });
+  // });
 });

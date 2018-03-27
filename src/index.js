@@ -1,5 +1,11 @@
 import axios from 'axios';
 import RANGE from './range';
+import {
+  translateSummaryParameters,
+  translateStatsParameters,
+  translateDurationParameters,
+  translateCommitsParameters,
+} from './translateQueryParameters';
 
 const rangeQueryParameters = Object.freeze({
   [RANGE.LAST_7_DAYS]: 'last_7_days',
@@ -19,48 +25,11 @@ class WakaTimeClient {
     });
   }
 
-  static getSummaryParameters({
-    dateRange,
-    projectName = null,
-    branchNames = [],
-  }) {
-    const { startDate, endDate } = dateRange;
-    return {
-      start: startDate,
-      end: endDate,
-      project: projectName,
-      branches: branchNames.join(','),
-    };
-  }
-
-  static getStatsParameters({ timeout = null, useWritesOnly = null, projectName = null }) {
-    return {
-      timeout,
-      writes_only: useWritesOnly,
-      project: projectName,
-    };
-  }
-
-  static getDurationParameters({ date, projectName = null, branchNames = [] }) {
-    return {
-      date,
-      project: projectName,
-      branches: branchNames.join(','),
-    };
-  }
-
-  static getCommitsParameters({ authorUsername = null, pageNumber = null }) {
-    return {
-      author: authorUsername,
-      page: pageNumber,
-    };
-  }
-
   getUser(userId) {
     return this.axiosConfiguration.get(`users/${userId}`);
   }
 
-  getMyUser() {
+  getMe() {
     return this.axiosConfiguration.get('users/current');
   }
 
@@ -84,7 +53,7 @@ class WakaTimeClient {
     return this.axiosConfiguration.get(`users/${userId}/teams/${teamId}/members`);
   }
 
-  getMyTeamMembers({ teamId }) {
+  getMyTeamMembers(teamId) {
     return this.axiosConfiguration.get(`users/current/teams/${teamId}/members`);
   }
 
@@ -96,28 +65,28 @@ class WakaTimeClient {
   }) {
     return this.axiosConfiguration.get(
       `users/${userId}/teams/${teamId}/members/${teamMemberId}/summaries`,
-      { params: WakaTimeClient.getSummaryParameters(parameters) },
+      { params: translateSummaryParameters(parameters) },
     );
   }
 
   getMyTeamMemberSummary({ teamId, teamMemberId, ...parameters }) {
     return this.axiosConfiguration.get(
       `users/current/teams/${teamId}/members/${teamMemberId}/summaries`,
-      { params: WakaTimeClient.getSummaryParameters(parameters) },
+      { params: translateSummaryParameters(parameters) },
     );
   }
 
   getUserSummary({ userId, ...parameters }) {
     return this.axiosConfiguration.get(
       `users/${userId}/summaries`,
-      { params: WakaTimeClient.getSummaryParameters(parameters) },
+      { params: translateSummaryParameters(parameters) },
     );
   }
 
-  getMyUserSummary({ ...parameters }) {
+  getMySummary({ ...parameters }) {
     return this.axiosConfiguration.get(
       'users/current/summaries',
-      { params: WakaTimeClient.getSummaryParameters(parameters) },
+      { params: translateSummaryParameters(parameters) },
     );
   }
 
@@ -128,14 +97,14 @@ class WakaTimeClient {
   }) {
     return this.axiosConfiguration.get(
       `users/${userId}/stats/${rangeQueryParameters[range]}`,
-      { params: WakaTimeClient.getStatsParameters(parameters) },
+      { params: translateStatsParameters(parameters) },
     );
   }
 
   getMyStats({ range, ...parameters }) {
     return this.axiosConfiguration.get(
-      `users/current/${rangeQueryParameters[range]}`,
-      { params: WakaTimeClient.getStatsParameters(parameters) },
+      `users/current/stats/${rangeQueryParameters[range]}`,
+      { params: translateStatsParameters(parameters) },
     );
   }
 
@@ -147,7 +116,7 @@ class WakaTimeClient {
     return this.axiosConfiguration.get('users/current/projects');
   }
 
-  getLeaders({ language = null, pageNumber = null }) {
+  getLeaders({ language = null, pageNumber = null } = {}) {
     return this.axiosConfiguration.get('leaders', { params: { language, page: pageNumber } });
   }
 
@@ -170,25 +139,25 @@ class WakaTimeClient {
   getDurations({ userId, ...parameters }) {
     return this.axiosConfiguration.get(
       `users/${userId}/durations`,
-      { params: WakaTimeClient.getDurationParameters(parameters) },
+      { params: translateDurationParameters(parameters) },
     );
   }
 
   getMyDurations({ ...parameters }) {
-    return this.axiosConfiguration.get('users/current/durations', { params: WakaTimeClient.getDurationParameters(parameters) });
+    return this.axiosConfiguration.get('users/current/durations', { params: translateDurationParameters(parameters) });
   }
 
-  getCommits({ userId, projectId, ...parameters }) {
+  getCommits({ userId, projectName, ...parameters }) {
     return this.axiosConfiguration.get(
-      `users/${userId}/projects/${projectId}/commits`,
-      { params: WakaTimeClient.getCommitsParameters(parameters) },
+      `users/${userId}/projects/${projectName}/commits`,
+      { params: translateCommitsParameters(parameters) },
     );
   }
 
-  getMyCommits({ projectId, ...parameters }) {
+  getMyCommits({ projectName, ...parameters }) {
     return this.axiosConfiguration.get(
-      `users/current/projects/${projectId}/commits`,
-      { params: WakaTimeClient.getCommitsParameters(parameters) },
+      `users/current/projects/${projectName}/commits`,
+      { params: translateCommitsParameters(parameters) },
     );
   }
 }
