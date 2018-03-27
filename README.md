@@ -7,12 +7,35 @@ A `NodeJS` client for [the `WakaTime` API](https://wakatime.com/developers).
 ```bash
 npm install wakatime-client --save
 ```
+
 ## API
 
-* [Create Instance Using API Key](###create-instance-using-api-key)
-* [`getUser`](###getUser)
-* [`getMe`](###getMe)
-* [`getTeams`](###getTeams)
+* [Create Instance Using API Key](#create-instance-using-api-key)
+* [`getUser`](#getuser)
+* [`getMe`](#getme)
+* [`getTeams`](#getteams)
+* [`getMyTeams`](#getmyteams)
+* [`getUserAgents`](#getuseragents)
+* [`getMyUserAgents`](#getmyuseragents)
+* [`getTeamMembers`](#getteammembers)
+* [`getMyTeamMembers`](#getmyteammembers)
+* [`getTeamMemberSummary](#getteammembersummary)
+* [`getMyTeamMemberSummary](#getmyteammembersummary)
+* [`getUserSummary`](#getusersummary)
+* [`getMySummary`](#getmysummary)
+* [`getUserStats`](#getuserstats)
+* [`getMyStats`](#getmystats)
+* [`getProjects`](#getprojects)
+* [`getMyProjects`](#getmyprojects)
+* [`getLeaders`](#getleaders)
+* [`getHeartbeats`](#getheartbeats)
+* [`getMyHeartbeats`](#getmyheartbeats)
+* [`getGoals`](#getgoals)
+* [`getMyGoals`](#getmygoals)
+* [`getDurations`](#getdurations)
+* [`getMyDurations`](#getmydurations)
+* [`getCommits`](#getcommits)
+* [`getMyCommits`](#getmycommits)
 
 ### Create Instance Using API Key
 
