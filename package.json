@@ -7,7 +7,7 @@
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "compile": "babel -d build/ src/ --ignore node_modules,*.test.js",
     "lint": "eslint --ext .js .",
-    "is-es5": "es-check es5 ./dist/*.js",
+    "is-es5": "es-check es5 ./build/*.js",
     "test": "jest --coverage --passWithNoTests",
     "prepublishOnly": "npm run compile",
     "semantic-commit": "commit",
