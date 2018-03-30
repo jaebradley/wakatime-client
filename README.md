@@ -1,6 +1,6 @@
-# wakatime-client
-
 [![Greenkeeper badge](https://badges.greenkeeper.io/jaebradley/wakatime-client.svg)](https://greenkeeper.io/)
+
+# wakatime-client
 
 A `NodeJS` client for [the `WakaTime` API](https://wakatime.com/developers).
 
