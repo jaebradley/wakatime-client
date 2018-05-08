@@ -26,35 +26,35 @@ class WakaTimeClient {
   }
 
   getUser(userId) {
-    return this.axiosConfiguration.get(`users/${userId}`);
+    return this.axiosConfiguration.get(`users/${userId}`).then(response => response.data);
   }
 
   getMe() {
-    return this.axiosConfiguration.get('users/current');
+    return this.axiosConfiguration.get('users/current').then(response => response.data);
   }
 
   getTeams(userId) {
-    return this.axiosConfiguration.get(`users/${userId}/teams`);
+    return this.axiosConfiguration.get(`users/${userId}/teams`).then(response => response.data);
   }
 
   getMyTeams() {
-    return this.axiosConfiguration.get('users/current/teams');
+    return this.axiosConfiguration.get('users/current/teams').then(response => response.data);
   }
 
   getUserAgents(userId) {
-    return this.axiosConfiguration.get(`users/${userId}/user_agents`);
+    return this.axiosConfiguration.get(`users/${userId}/user_agents`).then(response => response.data);
   }
 
   getMyUserAgents() {
-    return this.axiosConfiguration.get('users/current/user_agents');
+    return this.axiosConfiguration.get('users/current/user_agents').then(response => response.data);
   }
 
   getTeamMembers({ userId, teamId }) {
-    return this.axiosConfiguration.get(`users/${userId}/teams/${teamId}/members`);
+    return this.axiosConfiguration.get(`users/${userId}/teams/${teamId}/members`).then(response => response.data);
   }
 
   getMyTeamMembers(teamId) {
-    return this.axiosConfiguration.get(`users/current/teams/${teamId}/members`);
+    return this.axiosConfiguration.get(`users/current/teams/${teamId}/members`).then(response => response.data);
   }
 
   getTeamMemberSummary({
@@ -66,28 +66,28 @@ class WakaTimeClient {
     return this.axiosConfiguration.get(
       `users/${userId}/teams/${teamId}/members/${teamMemberId}/summaries`,
       { params: translateSummaryParameters(parameters) },
-    );
+    ).then(response => response.data);
   }
 
   getMyTeamMemberSummary({ teamId, teamMemberId, ...parameters }) {
     return this.axiosConfiguration.get(
       `users/current/teams/${teamId}/members/${teamMemberId}/summaries`,
       { params: translateSummaryParameters(parameters) },
-    );
+    ).then(response => response.data);
   }
 
   getUserSummary({ userId, ...parameters }) {
     return this.axiosConfiguration.get(
       `users/${userId}/summaries`,
       { params: translateSummaryParameters(parameters) },
-    );
+    ).then(response => response.data);
   }
 
   getMySummary({ ...parameters }) {
     return this.axiosConfiguration.get(
       'users/current/summaries',
       { params: translateSummaryParameters(parameters) },
-    );
+    ).then(response => response.data);
   }
 
   getUserStats({
@@ -98,67 +98,67 @@ class WakaTimeClient {
     return this.axiosConfiguration.get(
       `users/${userId}/stats/${rangeQueryParameters[range]}`,
       { params: translateStatsParameters(parameters) },
-    );
+    ).then(response => response.data);
   }
 
   getMyStats({ range, ...parameters }) {
     return this.axiosConfiguration.get(
       `users/current/stats/${rangeQueryParameters[range]}`,
       { params: translateStatsParameters(parameters) },
-    );
+    ).then(response => response.data);
   }
 
   getProjects(userId) {
-    return this.axiosConfiguration.get(`users/${userId}/projects`);
+    return this.axiosConfiguration.get(`users/${userId}/projects`).then(response => response.data);
   }
 
   getMyProjects() {
-    return this.axiosConfiguration.get('users/current/projects');
+    return this.axiosConfiguration.get('users/current/projects').then(response => response.data);
   }
 
   getLeaders({ language = null, pageNumber = null } = {}) {
-    return this.axiosConfiguration.get('leaders', { params: { language, page: pageNumber } });
+    return this.axiosConfiguration.get('leaders', { params: { language, page: pageNumber } }).then(response => response.data);
   }
 
   getHeartbeats({ userId, date }) {
-    return this.axiosConfiguration.get(`users/${userId}/heartbeats`, { params: { date } });
+    return this.axiosConfiguration.get(`users/${userId}/heartbeats`, { params: { date } }).then(response => response.data);
   }
 
   getMyHeartbeats(date) {
-    return this.axiosConfiguration.get('users/current/heartbeats', { params: { date } });
+    return this.axiosConfiguration.get('users/current/heartbeats', { params: { date } }).then(response => response.data);
   }
 
   getGoals(userId) {
-    return this.axiosConfiguration.get(`users/${userId}/goals`);
+    return this.axiosConfiguration.get(`users/${userId}/goals`).then(response => response.data);
   }
 
   getMyGoals() {
-    return this.axiosConfiguration.get('users/current/goals');
+    return this.axiosConfiguration.get('users/current/goals').then(response => response.data);
   }
 
   getDurations({ userId, ...parameters }) {
     return this.axiosConfiguration.get(
       `users/${userId}/durations`,
       { params: translateDurationParameters(parameters) },
-    );
+    ).then(response => response.data);
   }
 
   getMyDurations({ ...parameters }) {
-    return this.axiosConfiguration.get('users/current/durations', { params: translateDurationParameters(parameters) });
+    return this.axiosConfiguration.get('users/current/durations', { params: translateDurationParameters(parameters) }).then(response => response.data);
   }
 
   getCommits({ userId, projectName, ...parameters }) {
     return this.axiosConfiguration.get(
       `users/${userId}/projects/${projectName}/commits`,
       { params: translateCommitsParameters(parameters) },
-    );
+    ).then(response => response.data);
   }
 
   getMyCommits({ projectName, ...parameters }) {
     return this.axiosConfiguration.get(
       `users/current/projects/${projectName}/commits`,
       { params: translateCommitsParameters(parameters) },
-    );
+    ).then(response => response.data);
   }
 }
 
