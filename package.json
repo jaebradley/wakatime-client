@@ -1,6 +1,30 @@
 {
+  "name": "wakatime-client",
   "version": "0.0.0-development",
-  "main": "build/index.js",
+  "description": "NodeJS Client for the Wakatime API",
+  "keywords": [
+    "wakatime",
+    "wakatime client"
+  ],
+  "homepage": "https://github.com/jaebradley/wakatime-client/#readme",
+  "readme": "https://github.com/jaebradley/wakatime-client/#readme",
+  "bugs": {
+    "url": "https://github.com/jaebradley/wakatime-client/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "jae.b.bradley@gmail.com"
+  },
+  "files": [
+    "build"
+  ],
+  "browser": "build/index.js",
+  "main": "build/index.cjs.js",
+  "module": "build/index.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaebradley/wakatime-client"
+  },
   "global": false,
   "scripts": {
     "build": "BABEL_ENV=production rollup -c",
@@ -15,23 +39,16 @@
     "travis-deploy-once": "travis-deploy-once"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/node_modules/"
+    ]
   },
-  "keywords": [
-    "wakatime",
-    "wakatime client"
-  ],
-  "name": "wakatime-client",
-  "description": "NodeJS Client for the Wakatime API",
-  "author": "jae.b.bradley@gmail.com",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jaebradley/wakatime-client"
+  "dependencies": {},
+  "peerDependencies": {
+    "axios": "^0.18.0"
   },
-  "bugs": {
-    "url": "https://github.com/jaebradley/wakatime-client/issues"
-  },
-  "homepage": "https://github.com/jaebradley/wakatime-client/#readme",
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.42",
     "@babel/core": "^7.0.0-beta.42",
@@ -62,8 +79,5 @@
     "rollup-plugin-uglify": "^3.0.0",
     "semantic-release": "^15.1.4",
     "travis-deploy-once": "^5.0.0"
-  },
-  "peerDependencies": {
-    "axios": "^0.18.0"
   }
 }
