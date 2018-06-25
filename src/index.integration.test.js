@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-import { WakaTimeClient, RANGE } from './';
+import { WakaTimeClient, RANGE } from '.';
 
 dotenv.config();
 
