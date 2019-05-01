@@ -6,29 +6,37 @@ import filesize from 'rollup-plugin-filesize';
 import minify from 'rollup-plugin-babel-minify';
 import { terser } from 'rollup-plugin-terser';
 
+import pkg from './package.json';
+
 const config = {
+  external: ['axios'],
   input: 'src/index.js',
   output: [
     {
-      file: 'build/index.js',
+      file: pkg.browser,
       format: 'umd',
-      name: 'wakatime-client',
-      globals: ['axios'],
+      name: pkg.name,
+      globals: {
+        axios: 'axios',
+      },
     },
     {
-      file: 'build/index.cjs.js',
+      file: pkg.main,
       format: 'cjs',
-      name: 'wakatime-client',
-      globals: ['axios'],
+      name: pkg.name,
+      globals: {
+        axios: 'axios',
+      },
     },
     {
-      file: 'build/index.esm.js',
+      file: pkg.module,
       format: 'es',
-      name: 'wakatime-client',
-      globals: ['axios'],
+      name: pkg.name,
+      globals: {
+        axios: 'axios',
+      },
     },
   ],
-  external: ['axios'],
   plugins: [
     babel({ exclude: 'node_modules/**' }),
     localResolve(),
