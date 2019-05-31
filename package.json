@@ -51,7 +51,7 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/runtime": "^7.4.4",
     "@commitlint/cli": "^7.5.2",
-    "@commitlint/config-angular": "^7.5.0",
+    "@commitlint/config-angular": "^8.0.0",
     "@commitlint/prompt": "^7.5.0",
     "@commitlint/prompt-cli": "^7.5.0",
     "axios": "^0.18.0",
