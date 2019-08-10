@@ -61,7 +61,7 @@
     "dotenv": "^8.0.0",
     "es-check": "^5.0.0",
     "eslint": "^6.0.0",
-    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.17.3",
     "husky": "^2.3.0",
     "jest": "^24.8.0",
