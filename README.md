@@ -65,7 +65,7 @@ const userDetails = await client.getUser('some user id');
 Get details for user associated with API key
 
 ```javascript
-const myUserDetails = await client.getMyUser();
+const myUserDetails = await client.getMe();
 ```
 
 ### `getTeams`
