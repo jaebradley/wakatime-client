@@ -1,13 +1,19 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/jaebradley/wakatime-client.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/jaebradley/wakatime-client.svg?branch=master)](https://travis-ci.org/jaebradley/wakatime-client)
 [![npm](https://img.shields.io/npm/v/wakatime-client.svg)](https://www.npmjs.com/package/wakatime-client)
-[![npm](https://img.shields.io/npm/dt/wakatime-client.svg)](https://www.npmjs.com/package/wakatime-client)
-
-
+[![npm-total-downloads](https://img.shields.io/npm/dt/wakatime-client.svg)](https://www.npmjs.com/package/wakatime-client)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/wakatime-client)
+![Codecov branch](https://img.shields.io/codecov/c/gh/jaebradley/wakatime-client/master)
+![GitHub](https://img.shields.io/github/license/jaebradley/wakatime-client)
 
 # wakatime-client
 
 A `NodeJS` client for [the `WakaTime` API](https://wakatime.com/developers).
+
+- [WakaTime Client](#wakatime-client)
+  - [Installation](#installation)
+  - [API](#api)
+  - [Local Development](#local-development)
 
 ## Installation
 
@@ -450,3 +456,28 @@ const myCommits = await client.getMyCommits({
   pageNumber: 2,
 });
 ```
+
+## Local Development
+
+After cloning the repository, use `nvm` / `npm` to install dependencies.
+
+To run tests, execute `npm run test`. This will run both unit and integration tests.
+
+In order to execute local integration tests successfully, you'll need to specify the following environment variables in the `.env` file
+
+- `ACCESS_TOKEN` (A WakaTime Access Token)
+- `USER_ID` (A WakaTime User ID)
+
+To build the production bundle, execute `npm run build`.
+
+### Git Hooks
+
+This project uses [`husky`](https://github.com/typicode/husky) to maintain git hooks.
+
+- `pre-commit` - run `eslint`
+- `commit-msg` - run commit message linting
+- `pre-push` - run tests
+
+### Commit Linting
+
+This project uses [`semantic-release`](https://github.com/semantic-release/semantic-release) and [`commitlint`](https://github.com/conventional-changelog/commitlint) (specifically the [Angular commit convention](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)) to automatically enforce semantic versioning.
