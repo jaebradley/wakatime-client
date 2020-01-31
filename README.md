@@ -1,9 +1,10 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/jaebradley/wakatime-client.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/jaebradley/wakatime-client.svg?branch=master)](https://travis-ci.org/jaebradley/wakatime-client)
 [![npm](https://img.shields.io/npm/v/wakatime-client.svg)](https://www.npmjs.com/package/wakatime-client)
-[![npm](https://img.shields.io/npm/dt/wakatime-client.svg)](https://www.npmjs.com/package/wakatime-client)
-
-
+[![npm-total-downloads](https://img.shields.io/npm/dt/wakatime-client.svg)](https://www.npmjs.com/package/wakatime-client)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/wakatime-client)
+![Codecov branch](https://img.shields.io/codecov/c/gh/jaebradley/wakatime-client/master)
+![GitHub](https://img.shields.io/github/license/jaebradley/wakatime-client)
 
 # wakatime-client
 
