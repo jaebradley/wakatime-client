@@ -4,12 +4,8 @@ cache:
     - ~/.npm
 notifications:
   email: true
-node_js:
-  - 'node'
-  - 'lts/*'
 install: npm install
 before_install:
-  - npm install -g npm@5
   - npm install -g greenkeeper-lockfile@1
 jobs:
   include:
