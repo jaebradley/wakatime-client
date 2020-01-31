@@ -27,16 +27,17 @@
   },
   "global": false,
   "scripts": {
-    "build": "BABEL_ENV=production rollup -c",
-    "codecov": "codecov",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "build": "BABEL_ENV=production npx rollup -c",
+    "codecov": "npx codecov",
+    "commitmsg": "npx commitlint -e $GIT_PARAMS",
     "deploy": "npm run travis-deploy-once 'npm run semantic-release'",
     "gc": "commit",
-    "lint": "eslint --ext .js .",
+    "is-build-es5": "npx es-check es5 './build/**/*.!(esm).js'",
+    "lint": "npx eslint --ext .js .",
     "prepare": "npm run build",
-    "semantic-release": "semantic-release",
-    "test": "BABEL_ENV=test jest src/ --coverage --no-cache",
-    "travis-deploy-once": "travis-deploy-once"
+    "semantic-release": "npx semantic-release",
+    "test": "BABEL_ENV=test npx jest src/ --coverage --no-cache",
+    "travis-deploy-once": "npx travis-deploy-once"
   },
   "dependencies": {},
   "peerDependencies": {
