@@ -160,6 +160,10 @@ class WakaTimeClient {
       { params: translateCommitsParameters(parameters) },
     ).then((response) => response.data);
   }
+
+  getMetadata() {
+    return this.axiosConfiguration.get('meta');
+  }
 }
 
 export {

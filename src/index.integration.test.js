@@ -231,4 +231,16 @@ describe('WakaTimeClient Integration Test', () => {
   //     expect(myCommits).toBeDefined();
   //   });
   // });
+
+  describe('getMetadata', () => {
+    it('gets metadata about WakaTime', async () => {
+      const response = await client.getMetadata();
+      expect(response).toBeDefined();
+    });
+
+    it('WakaTime metadata response has data property', async () => {
+      const response = await client.getMetadata();
+      expect(response.data).toBeDefined();
+    });
+  });
 });
