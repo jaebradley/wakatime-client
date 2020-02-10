@@ -164,6 +164,14 @@ class WakaTimeClient {
   getMetadata() {
     return this.axiosConfiguration.get('meta');
   }
+
+  getOrganizations(userId) {
+    return this.axiosConfiguration.get(`users/${userId}/orgs`).then((response) => response.data);
+  }
+
+  getMyOrganizations() {
+    return this.axiosConfiguration.get('users/current/orgs').then((response) => response.data);
+  }
 }
 
 export {

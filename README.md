@@ -49,6 +49,9 @@ npm install wakatime-client --save
 * [`getMyDurations`](#getmydurations)
 * [`getCommits`](#getcommits)
 * [`getMyCommits`](#getmycommits)
+* [`getMetadata`](#getmetadata)
+* [`getOrganizations`](#getorganizations)
+* [`getMyOrganizations`](#getmyorganizations)
 
 ### Create Instance Using API Key
 
@@ -455,6 +458,30 @@ const myCommits = await client.getMyCommits({
   authorName: 'jaebaebae',
   pageNumber: 2,
 });
+```
+
+### `getMetadata`
+
+Get metadata associated with WakaTime service (like IP addresses)
+
+```javascript
+const metadata = await client.getMetadata();
+```
+
+### `getOrganizations`
+
+Get list of organizations for the specified user
+
+```javascript
+const organizations = await client.getOrganizations('some user id');
+```
+
+### `getMyOrganizations`
+
+Get list of organizations for user associated with API key
+
+```javascript
+const myOrganizations = await client.getMyOrganizations();
 ```
 
 ## Local Development
