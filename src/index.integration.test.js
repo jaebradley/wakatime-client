@@ -243,4 +243,18 @@ describe('WakaTimeClient Integration Test', () => {
       expect(response.data).toBeDefined();
     });
   });
+
+  describe('getOrganizations', () => {
+    it('gets organizations for specified user', async () => {
+      const response = await client.getOrganizations(userId);
+      expect(response).toBeDefined();
+    });
+  });
+
+  describe('getMyOrganizations', () => {
+    it('gets organizations for current user', async () => {
+      const response = await client.getMyOrganizations();
+      expect(response).toBeDefined();
+    });
+  });
 });
