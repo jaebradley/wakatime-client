@@ -172,6 +172,14 @@ class WakaTimeClient {
   getMyOrganizations() {
     return this.axiosConfiguration.get('users/current/orgs').then((response) => response.data);
   }
+
+  getOrganizationDashboards({ userId, organizationId }) {
+    return this.axiosConfiguration.get(`users/${userId}/orgs/${organizationId}`).then((response) => response.data);
+  }
+
+  getMyOrganizationDashboards(organizationId) {
+    return this.getOrganizationDashboards({ userId: 'current', organizationId });
+  }
 }
 
 export {
