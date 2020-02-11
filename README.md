@@ -54,6 +54,8 @@ npm install wakatime-client --save
 * [`getMyOrganizations`](#getmyorganizations)
 * [`getOrganizationDashboards`](#getorganizationdashboards)
 * [`getMyOrganizationDashboards`](#getmyorganizationdashboards)
+* [`getOrganizationDashboardMembers`](#getorganizationdashboardmembers)
+* [`getMyOrganizationDashboardMembers`](#getmyorganizationdashboardmembers)
 
 ### Create Instance Using API Key
 
@@ -505,6 +507,29 @@ Get list of dashboards for the current user and the specified organization
 const dashboards = await client.getMyOrganizationDashboards('some organization id');
 ```
 
+### `getOrganizationDashboardMembers`
+
+Get list of dashboard members for the specified user, organization, and dashboard
+
+```javascript
+const members = await client.getOrganizationDashboardMembers({
+  userId: 'some user id',
+  organizationId: 'some organization id',
+  dashboardId: 'some dashboard id',
+})
+```
+
+### `getMyOrganizationDashboardMembers`
+
+Get list of dashboard members for the current user and specified organization and dashboard
+
+```javascript
+const members = await client.getMyOrganizationDashboardMembers({
+  organizationId: 'some organization id',
+  dashboardId: 'some dashboard id',
+})
+```
+
 ## Local Development
 
 After cloning the repository, use `nvm` / `npm` to install dependencies.
@@ -516,6 +541,7 @@ In order to execute local integration tests successfully, you'll need to specify
 - `ACCESS_TOKEN` (A WakaTime Access Token)
 - `USER_ID` (A WakaTime User ID)
 - `ORGANIZATION_ID` ( A WakaTime Organization ID)
+- `DASHBOARD_ID` (A WakaTime Dashboard ID)
 
 To build the production bundle, execute `npm run build`.
 

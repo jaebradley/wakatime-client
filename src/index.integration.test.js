@@ -22,6 +22,7 @@ describe('WakaTimeClient Integration Test', () => {
   const projectName = 'jae-bradley-cli-creator';
   const branchNames = ['master'];
   const organizationId = process.env.ORGANIZATION_ID;
+  const dashboardId = process.env.DASHBOARD_ID;
 
   beforeEach(() => {
     client = new WakaTimeClient(process.env.ACCESS_TOKEN);
@@ -269,6 +270,27 @@ describe('WakaTimeClient Integration Test', () => {
   describe('getMyOrganizationDashboards', () => {
     it('gets organization dashboards for current user and organization', async () => {
       const response = await client.getMyOrganizationDashboards(organizationId);
+      expect(response).toBeDefined();
+    });
+  });
+
+  describe('getOrganizationDashboardMembers', () => {
+    it('gets organization dashboard members for specified user, organization, and dashboard', async () => {
+      const response = await client.getOrganizationDashboardMembers({
+        userId,
+        organizationId,
+        dashboardId,
+      });
+      expect(response).toBeDefined();
+    });
+  });
+
+  describe('getMyOrganizationDashboardMembers', () => {
+    it('gets organization dashboard members for specified user, organization, and dashboard', async () => {
+      const response = await client.getMyOrganizationDashboardMembers({
+        organizationId,
+        dashboardId,
+      });
       expect(response).toBeDefined();
     });
   });

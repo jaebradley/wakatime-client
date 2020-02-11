@@ -180,6 +180,14 @@ class WakaTimeClient {
   getMyOrganizationDashboards(organizationId) {
     return this.getOrganizationDashboards({ userId: 'current', organizationId });
   }
+
+  getOrganizationDashboardMembers({ userId, organizationId, dashboardId }) {
+    return this.axiosConfiguration.get(`users/${userId}/orgs/${organizationId}/dashboards/${dashboardId}/members`).then((response) => response.data);
+  }
+
+  getMyOrganizationDashboardMembers({ organizationId, dashboardId }) {
+    return this.getOrganizationDashboardMembers({ userId: 'current', organizationId, dashboardId });
+  }
 }
 
 export {
