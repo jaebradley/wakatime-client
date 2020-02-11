@@ -293,5 +293,31 @@ describe('WakaTimeClient Integration Test', () => {
       });
       expect(response).toBeDefined();
     });
+
+    // TODO: @jaebradley can run these integration tests when have dashboard with members
+    // describe('getOrganizationDashboardMemberSummaries', () => {
+    // eslint-disable-next-line max-len
+    //   it('gets organization dashboard members for specified user, organization, dashboard, and member', async () => {
+    //     const response = await client.getOrganizationDashboardMemberSummaries({
+    //       userId,
+    //       organizationId,
+    //       dashboardId,
+    //       memberId: userId,
+    //     });
+    //     expect(response).toBeDefined();
+    //   });
+    // });
+    //
+    // describe('getMyOrganizationDashboardMemberSummaries', () => {
+    // eslint-disable-next-line max-len
+    //   it('gets organization dashboard members for specified user, organization, dashboard, and member', async () => {
+    //     const response = await client.getMyOrganizationDashboardMemberSummaries({
+    //       organizationId,
+    //       dashboardId,
+    //       memberId: userId,
+    //     });
+    //     expect(response).toBeDefined();
+    //   });
+    // });
   });
 });
