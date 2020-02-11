@@ -56,6 +56,8 @@ npm install wakatime-client --save
 * [`getMyOrganizationDashboards`](#getmyorganizationdashboards)
 * [`getOrganizationDashboardMembers`](#getorganizationdashboardmembers)
 * [`getMyOrganizationDashboardMembers`](#getmyorganizationdashboardmembers)
+* [`getOrganizationDashboardMemberSummaries`](#getorganizationdashboardmembersummaries)
+* [`getMyOrganizationDashboardMemberSummaries`](#getmyorganizationdashboardmembersummaries)
 
 ### Create Instance Using API Key
 
@@ -527,6 +529,31 @@ Get list of dashboard members for the current user and specified organization an
 const members = await client.getMyOrganizationDashboardMembers({
   organizationId: 'some organization id',
   dashboardId: 'some dashboard id',
+})
+```
+
+### `getOrganizationDashboardMemberSummaries`
+
+Get list of dashboard member summaries for the specified user, organization, dashboard, and member
+
+```javascript
+const summaries = await client.getOrganizationDashboardMemberSummaries({
+  userId: 'some user id',
+  organizationId: 'some organization id',
+  dashboardId: 'some dashboard id',
+  memberId: 'some member id',
+})
+```
+
+### `getMyOrganizationDashboardMemberSummaries`
+
+Get list of dashboard member summaries for the current user and specified organization, dashboard, and member
+
+```javascript
+const summaries = await client.getMyOrganizationDashboardMemberSummaries({
+  organizationId: 'some organization id',
+  dashboardId: 'some dashboard id',
+  memberId: 'some member id',
 })
 ```
 
