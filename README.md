@@ -58,6 +58,8 @@ npm install wakatime-client --save
 * [`getMyOrganizationDashboardMembers`](#getmyorganizationdashboardmembers)
 * [`getOrganizationDashboardMemberSummaries`](#getorganizationdashboardmembersummaries)
 * [`getMyOrganizationDashboardMemberSummaries`](#getmyorganizationdashboardmembersummaries)
+* [`getOrganizationDashboardMemberDurations`](#getorganizationdashboardmemberdurations)
+* [`getMyOrganizationDashboardMemberDurations`](#getmyorganizationdashboardmemberdurations)
 
 ### Create Instance Using API Key
 
@@ -551,6 +553,31 @@ Get list of dashboard member summaries for the current user and specified organi
 
 ```javascript
 const summaries = await client.getMyOrganizationDashboardMemberSummaries({
+  organizationId: 'some organization id',
+  dashboardId: 'some dashboard id',
+  memberId: 'some member id',
+})
+```
+
+### `getOrganizationDashboardMemberDurations`
+
+Get list of dashboard member durations for the specified user, organization, dashboard, and member
+
+```javascript
+const summaries = await client.getOrganizationDashboardMemberDurations({
+  userId: 'some user id',
+  organizationId: 'some organization id',
+  dashboardId: 'some dashboard id',
+  memberId: 'some member id',
+})
+```
+
+### `getMyOrganizationDashboardMemberDurations`
+
+Get list of dashboard member durations for the current user and specified organization, dashboard, and member
+
+```javascript
+const summaries = await client.getMyOrganizationDashboardMemberDurations({
   organizationId: 'some organization id',
   dashboardId: 'some dashboard id',
   memberId: 'some member id',
