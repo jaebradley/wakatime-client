@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import localResolve from 'rollup-plugin-local-resolve';
@@ -38,7 +38,7 @@ const config = {
     },
   ],
   plugins: [
-    babel({ exclude: 'node_modules/**' }),
+    babel({ exclude: 'node_modules/**', babelHelpers: 'bundled' }),
     localResolve(),
     resolve({
       preferBuiltins: true,
