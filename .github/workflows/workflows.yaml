@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    name: Test & Build
+    name: Build
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -38,19 +38,12 @@ jobs:
         run: npm ci
       - name: Run Linting
         run: npm run lint
-      - name: Run tests
-        run: npm run test
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          DASHBOARD_ID: ${{ secrets.DASHBOARD_ID }}
-          ORGANIZATION_ID: ${{ secrets.ORGANIZATION_ID }}
-          USER_ID: ${{ secrets.USER_ID }}
       - name: Run Build
         run: npm run build
       - name: Check Build Is ES5 Compatible
         run: npm run is-build-es5
-  coverage:
-    name: Code Coverage
+  test:
+    name: Test & Code Coverage
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -69,7 +62,7 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/master' }}
-    needs: build
+    needs: test
     steps:
       - uses: actions/checkout@v2
         with:

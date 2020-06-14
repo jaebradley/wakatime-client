@@ -36,7 +36,9 @@
     "lint": "npx eslint --ext .js .",
     "prepare": "npm run build",
     "semantic-release": "npx semantic-release",
-    "test": "BABEL_ENV=test npx jest src/ --coverage --no-cache",
+    "test": "BABEL_ENV=test jest src/ -c jest.config.shared.js",
+    "unit-test": "BABEL_ENV=test jest src/ -c jest.config.unit.js",
+    "integration-test": "BABEL_ENV=test jest src/ -c jest.config.integration.js",
     "travis-deploy-once": "npx travis-deploy-once"
   },
   "dependencies": {},
