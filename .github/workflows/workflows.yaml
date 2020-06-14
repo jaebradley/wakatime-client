@@ -41,10 +41,10 @@ jobs:
       - name: Run tests
         run: npm run test
         env:
-          ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}
-          DASHBOARD_ID=${{ secrets.DASHBOARD_ID }}
-          ORGANIZATION_ID=${{ secrets.ORGANIZATION_ID }}
-          USER_ID=${{ secrets.USER_ID }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          DASHBOARD_ID: ${{ secrets.DASHBOARD_ID }}
+          ORGANIZATION_ID: ${{ secrets.ORGANIZATION_ID }}
+          USER_ID: ${{ secrets.USER_ID }}
       - name: Run Build
         run: npm run build
       - name: Check Build Is ES5 Compatible
