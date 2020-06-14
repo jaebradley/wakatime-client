@@ -1,5 +1,4 @@
-[![Greenkeeper badge](https://badges.greenkeeper.io/jaebradley/wakatime-client.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.org/jaebradley/wakatime-client.svg?branch=master)](https://travis-ci.org/jaebradley/wakatime-client)
+![Wakatime Client](https://github.com/jaebradley/wakatime-client/workflows/Wakatime%20Client/badge.svg)
 [![npm](https://img.shields.io/npm/v/wakatime-client.svg)](https://www.npmjs.com/package/wakatime-client)
 [![npm-total-downloads](https://img.shields.io/npm/dt/wakatime-client.svg)](https://www.npmjs.com/package/wakatime-client)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/wakatime-client)
@@ -590,7 +589,7 @@ After cloning the repository, use `nvm` / `npm` to install dependencies.
 
 To run tests, execute `npm run test`. This will run both unit and integration tests.
 
-In order to execute local integration tests successfully, you'll need to specify the following environment variables in the `.env` file
+In order to execute local integration tests successfully, you'll need to specify the following environment variables in the `.env` file as well as in the `Secrets` section of your fork's `Settings` page.
 
 - `ACCESS_TOKEN` (A WakaTime Access Token)
 - `USER_ID` (A WakaTime User ID)
