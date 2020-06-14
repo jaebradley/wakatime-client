@@ -589,7 +589,7 @@ After cloning the repository, use `nvm` / `npm` to install dependencies.
 
 To run tests, execute `npm run test`. This will run both unit and integration tests.
 
-In order to execute local integration tests successfully, you'll need to specify the following environment variables in the `.env` file
+In order to execute local integration tests successfully, you'll need to specify the following environment variables in the `.env` file as well as in the `Secrets` section of your fork's `Settings` page.
 
 - `ACCESS_TOKEN` (A WakaTime Access Token)
 - `USER_ID` (A WakaTime User ID)
