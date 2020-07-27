@@ -43,7 +43,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "axios": "^0.20.0"
+    "axios": "next"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
