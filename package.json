@@ -41,9 +41,7 @@
     "integration-test": "BABEL_ENV=test jest src/ -c jest.config.integration.js",
     "travis-deploy-once": "npx travis-deploy-once"
   },
-  "dependencies": {
-    "axios": "^0.20.0-0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "axios": "^0.20.0-0"
   },
