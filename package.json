@@ -29,7 +29,7 @@
   "scripts": {
     "build": "BABEL_ENV=production npx rollup -c",
     "codecov": "npx codecov",
-    "commitmsg": "npx commitlint -e $GIT_PARAMS",
+    "commitmsg": "npx commitlint -E HUSKY_GIT_PARAMS",
     "deploy": "npm run semantic-release'",
     "gc": "commit",
     "is-build-es5": "npx es-check es5 './build/**/*.!(esm).js'",
