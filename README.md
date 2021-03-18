@@ -68,6 +68,13 @@ import { WakaTimeClient } from 'wakatime-client';
 const client = new WakaTimeClient('some api key');
 ```
 
+#### Custom Endpoints
+```javascript
+import { WakaTimeClient } from 'wakatime-client';
+
+const client = new WakaTimeClient('some api key', 'https://wakapi.dev/api/v1');
+```
+
 ### `getUser`
 
 Get details for user

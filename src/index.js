@@ -15,10 +15,10 @@ const rangeQueryParameters = Object.freeze({
 });
 
 class WakaTimeClient {
-  constructor(apiKey) {
+  constructor(apiKey, apiUrl = 'https://wakatime.com/api/v1/') {
     this.apiKey = apiKey;
     this.axiosConfiguration = axios.create({
-      baseURL: 'https://wakatime.com/api/v1/',
+      baseURL: apiUrl,
       // Base-64 encode the API Key
       // https://wakatime.com/developers#introduction
       headers: { Authorization: `Basic ${Buffer.from(this.apiKey).toString('base64')}` },
