@@ -23,6 +23,7 @@ npm install wakatime-client --save
 ## API
 
 * [Create Instance Using API Key](#create-instance-using-api-key)
+  * [Custom Base URLs](#custom-base-urls)
 * [`getUser`](#getuser)
 * [`getMe`](#getme)
 * [`getTeams`](#getteams)
@@ -68,7 +69,7 @@ import { WakaTimeClient } from 'wakatime-client';
 const client = new WakaTimeClient('some api key');
 ```
 
-#### Custom Endpoints
+#### Custom Base URLs
 ```javascript
 import { WakaTimeClient } from 'wakatime-client';
 
